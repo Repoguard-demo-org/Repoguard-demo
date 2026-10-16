@@ -1,6 +1,6 @@
 import hashlib
 import hmac
-
+# Synthetic mandatory-test evidence acceptance fixture
 
 def hash_password(password: str, salt: str) -> str:
     return hashlib.sha256((salt + password).encode()).hexdigest()
