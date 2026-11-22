@@ -21,6 +21,7 @@ def verify_token(token: str, secret: str, now: float | None = None) -> str | Non
     if not hmac.compare_digest(expect, sig):
         return None
     user, exp = base64.urlsafe_b64decode(body.encode()).decode().rsplit(":", 1)
-    if (now if now is not None else time.time()) > int(exp):
+    now_ms = int((now if now is not None else time.time()) * 1000)
+    if now_ms > int(exp):
         return None
     return user
